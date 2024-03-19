@@ -11,10 +11,12 @@ import { DatabaseModule } from './core/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { LogsMiddleware, QueryMiddleware } from './core/middlewares';
-import { RouterModule } from '@nestjs/core';
+import { APP_FILTER, RouterModule } from '@nestjs/core';
 import { ApiRoute, allModule } from './router';
-import { PostModule } from './post/post.module';
-import { FavoriteModule } from './favorite/favorite.module';
+import { AuthModule } from './auth/auth.module';
+import { AllExceptionsFilter } from './core/filter/all-exception.filter';
+import { WorkoutModule } from './workout/workout.module';
+import { ExceriseModule } from './excerise/excerise.module';
 
 @Module({
   imports: [
@@ -22,11 +24,15 @@ import { FavoriteModule } from './favorite/favorite.module';
     ConfigModule.forRoot({ isGlobal: true }),
     // RouterModule.register(ApiRoute),
     ...allModule,
-    PostModule,
-    FavoriteModule,
+    AuthModule,
+    WorkoutModule,
+    ExceriseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

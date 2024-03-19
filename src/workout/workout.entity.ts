@@ -1,19 +1,20 @@
 import {
-  Table,
+  AllowNull,
   Column,
-  Model,
+  CreatedAt,
   DataType,
   Default,
-  AllowNull,
+  HasMany,
+  Model,
   PrimaryKey,
-  CreatedAt,
+  Table,
   UpdatedAt,
 } from 'sequelize-typescript';
-
+import { Excerise } from 'src/excerise/entities/excerise.entity';
 @Table({
-  tableName: 'tbl_user',
+  tableName: 'tbl_workout',
 })
-export class User extends Model<User> {
+export class Workout extends Model<Workout> {
   @PrimaryKey
   @AllowNull
   @Default(DataType.UUIDV1)
@@ -25,19 +26,7 @@ export class User extends Model<User> {
     type: DataType.STRING,
     allowNull: false,
   })
-  name: string;
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-    defaultValue: '',
-  })
-  email: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  password: string;
+  title: string;
 
   @Column({
     type: DataType.BIGINT,
@@ -60,4 +49,7 @@ export class User extends Model<User> {
 
   @UpdatedAt
   UpdatedAt: Date;
+  // assocation
+  @HasMany(() => Excerise)
+  exercises: Excerise[];
 }
