@@ -20,6 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@adminjs/express": "^6.1.0",
+    "@adminjs/nestjs": "^6.1.0",
+    "@adminjs/sequelize": "^4.1.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.2",
     "@nestjs/core": "^9.0.0",
@@ -27,9 +30,12 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^7.1.1",
+    "adminjs": "^7.7.4",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.18.0",
     "lodash": "^4.17.21",
     "mysql2": "^3.3.2",
     "passport": "^0.6.0",
